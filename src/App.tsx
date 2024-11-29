@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 type Suit = "SPADES" | "DIAMONDS" | "HEARTS" | "CLUBS";
 
 type Card = {
@@ -23,3 +25,26 @@ const values = [
   { value: "K", emoji: "🤴" },
   { value: "A", emoji: "🅰️" },
 ];
+
+const generateDeck = (): Card[] => {
+  const deck: Card[] = [];
+  suits.forEach((suit) => {
+    values.forEach(({ value, emoji }) => {
+      deck.push({
+        id: uuidv4(),
+        value,
+        suit,
+        emoji: `${emoji} ${
+          suit === "SPADES"
+            ? "♠️"
+            : suit === "DIAMONDS"
+            ? "♦️"
+            : suit === "HEARTS"
+            ? "♥️"
+            : "♣️"
+        }`,
+      });
+    });
+  });
+  return deck.sort(() => Math.random() - 0.5);
+};
