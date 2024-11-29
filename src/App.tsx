@@ -1,35 +1,25 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
 type Suit = "SPADES" | "DIAMONDS" | "HEARTS" | "CLUBS";
 
 type Card = {
   id: string;
   value: string;
   suit: Suit;
-  image: string;
+  emoji: string;
 };
 
-const App: React.FC = () => {
-  const [deckId1, setDeckId1] = useState<string | null>(null);
-  const [deckId2, setDeckId2] = useState<string | null>(null);
-  const [cardsFromDeck1, setCardsFromDeck1] = useState<Card[]>([]);
-  const [cardsFromDeck2, setCardsFromDeck2] = useState<Card[]>([]);
-
-  const createDeck = async () => {
-    try {
-      const response = await axios.get(
-        "https://deckofcardsapi.com/api/deck/new/shuffle/?jokers_enabled=false"
-      );
-      return response.data.deck_id;
-    } catch (error) {
-      console.error("Erreur lors de la création du deck:", error);
-      return null;
-    }
-  };
-  return (
-    <div>
-      <App />
-    </div>
-  );
-};
+const suits: Suit[] = ["SPADES", "DIAMONDS", "HEARTS", "CLUBS"];
+const values = [
+  { value: "2", emoji: "2️⃣" },
+  { value: "3", emoji: "3️⃣" },
+  { value: "4", emoji: "4️⃣" },
+  { value: "5", emoji: "5️⃣" },
+  { value: "6", emoji: "6️⃣" },
+  { value: "7", emoji: "7️⃣" },
+  { value: "8", emoji: "8️⃣" },
+  { value: "9", emoji: "9️⃣" },
+  { value: "10", emoji: "🔟" },
+  { value: "J", emoji: "🃏" },
+  { value: "Q", emoji: "👸" },
+  { value: "K", emoji: "🤴" },
+  { value: "A", emoji: "🅰️" },
+];
